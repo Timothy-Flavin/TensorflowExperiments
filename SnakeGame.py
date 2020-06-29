@@ -112,18 +112,18 @@ class SnakeGame:
         
     def update(self, dir):
         if(self.gameState!=-1):
-            print("start update")
+            #print("start update")
             self.clearBoard()
-            print("cleared board")
+            #print("cleared board")
             self.mapArray[self.FRUITY*self.WIDTH+self.FRUITX]='@'
-            print("updated fruit location")
+            #print("updated fruit location")
             self.move(dir)
-            print("moved")
+            #print("moved")
             self.checkCollisions()
-            print("checked collisions")
+            #print("checked collisions")
             if self.gameState == 1:
                 self.spawnFruit()
-                print("spawned fruit")
+                #print("spawned fruit")
         else:
             print("Game is over, not updating until new game is called")
 
@@ -134,6 +134,9 @@ class SnakeGame:
         self.gameState = 0
         for i in range(len(self.mapArray)):
             self.mapArray[i]=' '
+        self.spawnFruit()
+        self.mapArray[self.snakeArray[0].y*self.WIDTH+self.snakeArray[0].x]='O'
+        self.mapArray[self.FRUITY*self.WIDTH+self.FRUITX]='@'
 
     def getGameState(self):
         return self.gameState
@@ -145,10 +148,10 @@ class SnakeGame:
 if __name__== "__main__":
     print("This is the demo version of snake game to verify that it is working. \ninput 4 to quit.")
     dir = 0
-    snake = SnakeGame(10,10)
+    snake = SnakeGame(5,5)
     while dir!=4:
         snake.printBoard()
-        snake.printSnake()
+        #snake.printSnake()
         print("input dir: ", end='')
         dir = int(input())
         if snake.getGameState()!=-1 and dir!=4:
